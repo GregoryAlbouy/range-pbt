@@ -1,21 +1,7 @@
-# js-kata-starter-pbt
+# range-pbt
 
-Starter project for kata with Property-Based Testing (Node, TypeScript, Jest, fast-check)
+Write a function `range`, that, given a natural number `n`, creates the range of natural numbers from `1` to `n`, e.g.:
 
-## Installation
-
-```text
-git clone https://github.com/mathieueveillard/js-kata-starter-pbt.git
-cd js-kata-starter-pbt
-npm install
+```typescript
+range(5); // [1, 2, 3, 4, 5]
 ```
-
-## Development
-
-```text
-npm test
-```
-
-## Documentation
-
-[fast-check](https://fast-check.dev/)

@@ -1,3 +1,5 @@
-const linear = (x: number): number => 0.5 * x + 1;
+const range = (n: number): number[] => {
+  return [...Array(n)].map((_, i) => i + 1);
+};
 
-export default linear;
+export default range;

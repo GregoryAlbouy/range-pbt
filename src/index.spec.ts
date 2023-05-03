@@ -1,15 +1,27 @@
 import fc from "fast-check";
-import linear from ".";
+import range from ".";
+import sum from "./utils/sum";
 
-test("The slope between two points should be constant", function () {
-  fc.assert(
-    fc.property(fc.record({ x1: fc.nat(), x2: fc.nat() }), ({ x1, x2 }): boolean => {
-      fc.pre(x1 !== x2);
-      const y1 = linear(x1);
-      const y2 = linear(x2);
-      const slope = (y2 - y1) / (x2 - x1);
-      console.log({ x1, x2, y1, y2, slope });
-      return slope === 0.5;
-    })
-  );
+describe("Test of range()", () => {
+  test("0-length range", () => {
+    expect(range(0)).toEqual([]);
+  });
+
+  test("1-length range", () => {
+    expect(range(1)).toEqual([1]);
+  });
+
+  test("n-length range", () => {
+    expect(range(5)).toEqual([1, 2, 3, 4, 5]);
+  });
+
+  test("n-length range", () => {
+    fc.assert(
+      fc.property(fc.nat({ max: 100 }), (n) => {
+        const suite = range(n);
+        const reversedSuite = [...suite].reverse();
+        return suite.reduce(sum, 0) + reversedSuite.reduce(sum, 0) === n * (n + 1);
+      })
+    );
+  });
 });
